@@ -40,8 +40,9 @@ allprojects {
 }
 
 dependencies {
-    compile 'com.github.arcadefire:nice-spinner:1.2'
+       compile 'com.github.TongZhang1314:nice-spinner:1.0'
 }
+
 ```
 
 Or declare it into your `pom.xml`:
