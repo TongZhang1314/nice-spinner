@@ -302,7 +302,7 @@ public class NiceSpinner extends AppCompatTextView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         listView.measure(widthMeasureSpec, heightMeasureSpec);
         popupWindow.setWidth(View.MeasureSpec.getSize(widthMeasureSpec));
-        popupWindow.setHeight(listView.getMeasuredHeight() - getMeasuredHeight() - dropDownListPaddingBottom);
+        popupWindow.setHeight(listView.getMeasuredHeight() - dropDownListPaddingBottom);
     }
 
     @Override public boolean onTouchEvent(MotionEvent event) {
@@ -335,7 +335,16 @@ public class NiceSpinner extends AppCompatTextView {
         if (!isArrowHidden) {
             animateArrow(true);
         }
-        popupWindow.showAsDropDown(this);
+	//版本的问题，造成显示的位置不同
+        if (Build.VERSION.SDK_INT < 24) {
+            popupWindow.showAsDropDown(this);
+        } else {
+            int[] location = new int[2];
+            this.getLocationOnScreen(location);
+            int x = location[0];
+            int y = location[1];
+            popupWindow.showAtLocation(this, Gravity.NO_GRAVITY, x, y + this.getHeight());
+        }
     }
 
     public void setTintColor(@ColorRes int resId) {
