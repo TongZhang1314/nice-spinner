@@ -40,8 +40,9 @@ allprojects {
 }
 
 dependencies {
-       compile 'com.github.TongZhang1314:nice-spinner:1.0'
+	compile 'com.github.TongZhang1314:nice-spinner:master-SNAPSHOT'
 }
+
 
 ```
 
